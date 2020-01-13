@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+//import authentication from '@kdpw/msal-b2c-react';
 
-function App() {
+import Header from './components/header';
+import Footer from './components/footer';
+import HomePage from './pages/homepage';
+import ClaimsPage from './pages/claimspage';
+import ProfilePage from  './pages/profilepage';
+import { Container } from 'react-bootstrap';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Container fluid={true}>
+        <Switch>
+          <Route path="/" exact={true} component={HomePage} />
+          <Route path="/claims" component={ClaimsPage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="*" component={() => {return "404 NOT FOUND"}} />
+        </Switch>
+      </Container>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
