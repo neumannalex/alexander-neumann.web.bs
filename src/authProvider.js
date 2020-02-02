@@ -2,6 +2,8 @@ import { MsalAuthProvider, LoginType } from 'react-aad-msal';
 import { Logger, LogLevel } from 'msal';
 import {configProvider} from './configProvider';
 
+console.log('authProvider AUTH_REDIRECT_URL', configProvider.AUTH_REDIRECT_URL);
+
 // https://www.npmjs.com/package/react-aad-msal
 // Msal Configurations
 const config = {
@@ -39,7 +41,7 @@ const authenticationParameters = {
 // Options
 const options = {
   loginType: LoginType.Popup,
-  tokenRefreshUri: window.location.origin
+  tokenRefreshUri: window.location.origin + '/auth'
 }
  
 export const authProvider = new MsalAuthProvider(config, authenticationParameters, options)
