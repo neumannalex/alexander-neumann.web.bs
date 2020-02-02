@@ -39,7 +39,7 @@ const authenticationParameters = {
 // Options
 const options = {
   loginType: LoginType.Popup,
-  tokenRefreshUri: window.location.origin + '/auth.html'
+  tokenRefreshUri: window.location.origin
 }
  
 export const authProvider = new MsalAuthProvider(config, authenticationParameters, options)
