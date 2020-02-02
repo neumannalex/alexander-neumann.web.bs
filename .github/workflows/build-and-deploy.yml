@@ -1,8 +1,9 @@
 name: Build and deploy
 
 on:
-  release: [published]
-
+  release:
+    types: [published]    
+    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
