@@ -9,31 +9,23 @@ import { ClipLoader, PulseLoader } from "react-spinners";
 import { Col, Row } from 'react-bootstrap';
 import { configProvider } from '../configProvider';
 
-const ClaimsPage = () => {
+const WeatherPage = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        async function fetchClaims() {
+        async function fetchWeather() {
             setIsLoading(true);
 
-            authProvider.getAccessToken().then(token => {
-                var config = {
-                    headers: {'Authorization': "bearer " + token.accessToken}
-                };
-
-                axios.get(`${configProvider.API_DOMAIN}/api/Claims`, config).then(result => {
-                    setData(result.data);
-                    setIsLoading(false);
-                }).catch(error => {
-                    setIsLoading(false);
-                });
+            axios.get(`${configProvider.API_DOMAIN}/api/WeatherForecast`).then(result => {
+                setData(result.data);
+                setIsLoading(false);
             }).catch(error => {
                 setIsLoading(false);
             });
         }
 
-        fetchClaims();
+        fetchWeather();
     }, []);
 
 
@@ -49,14 +41,22 @@ const ClaimsPage = () => {
     }
     else {
         return (
-            <ul>
-                {data.map(item => (
-                    <li key={item.type}>{item.type}: {item.value}</li>
-                ))
-                }
-            </ul>
+            <table>
+                <tbody>
+                    {data.map((item,index) => (
+                        <tr key={index}>
+                            <td>{item.date}</td>
+                            <td>{item.temperatureC} °C</td>
+                            <td>{item.temperatureF} °F</td>
+                            <td>{item.summary}</td>
+                        </tr>
+                    ))
+                    }    
+                </tbody>
+            </table>
+            
         );
     }
 };
 
-export default ClaimsPage;
+export default WeatherPage;

@@ -1,14 +1,15 @@
 import { MsalAuthProvider, LoginType } from 'react-aad-msal';
 import { Logger, LogLevel } from 'msal';
- 
+import {configProvider} from './configProvider';
+
 // https://www.npmjs.com/package/react-aad-msal
 // Msal Configurations
 const config = {
   auth: {
     authority: 'https://alexanderneumann.b2clogin.com/alexanderneumann.onmicrosoft.com/B2C_1_signin1/',
     validateAuthority: false,
-    clientId: 'b7a437ff-d1ab-42c4-8b73-e366a31d890f',
-    redirectUri: 'http://localhost:3000/auth.html'
+    clientId:  configProvider.API_CLIENT_ID,
+    redirectUri: configProvider.AUTH_REDIRECT_URL
   },
   cache: {
     cacheLocation: "localStorage",

@@ -1,5 +1,7 @@
+import './config';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import config from 'react-global-configuration';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';

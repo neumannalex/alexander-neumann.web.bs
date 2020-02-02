@@ -63,7 +63,9 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/weather">Wetter</Nav.Link>
                     <Nav.Link as={Link} to="/claims">Claims</Nav.Link>
+                    <Nav.Link as={Link} to="/training/running">Lauftraining</Nav.Link>
                 </Nav>
                 <Nav className="justify-content-end">
                     {isLoggedIn &&
