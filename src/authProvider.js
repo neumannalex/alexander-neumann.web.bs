@@ -40,7 +40,7 @@ const authenticationParameters = {
  
 // Options
 const options = {
-  loginType: LoginType.Popup,
+  loginType: LoginType.Redirect,
   tokenRefreshUri: window.location.origin
 }
  
