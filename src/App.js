@@ -23,6 +23,7 @@ const App = () => {
           <Route path="/weather" component={WeatherPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/training/running" component={RunningPage} />
+          <Route path="/auth" component={() => {return "AUTH COMPONENT"}} />
           <Route path="*" component={() => {return "404 NOT FOUND"}} />
         </Switch>
       </Container>
