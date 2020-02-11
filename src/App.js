@@ -9,7 +9,7 @@ import HomePage from './pages/homepage';
 import ClaimsPage from './pages/claimspage';
 import WeatherPage from './pages/weatherpage';
 import ProfilePage from  './pages/profilepage';
-import RunningPage from './pages/runningpage';
+import RunningPage from './pages/running/RunningPage';
 import { Container } from 'react-bootstrap';
 
 const App = () => {
