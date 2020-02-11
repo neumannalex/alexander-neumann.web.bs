@@ -11,6 +11,7 @@ import { faSync } from '@fortawesome/free-solid-svg-icons'
 
 import AddRunComponent from './AddRunComponent';
 import RunningChartComponent from './RunningChartComponent';
+import RunningEChartComponent from './RunningEChartComponent';
 import RunningStatsComponent from './RunningStatsComponent';
 import RunningListComponent from './RunningListComponent';
 
@@ -169,7 +170,8 @@ const RunningPage = (props) => {
                                 <RunningListComponent data={data} />
                             </Tab>
                             <Tab eventKey="charts" title="Chart">
-                                <RunningChartComponent data={data} />
+                                {/* <RunningChartComponent data={data} /> */}
+                                <RunningEChartComponent data={data} />
                             </Tab>
                             <Tab eventKey="addRun" title="Training hinzufügen">
                                 <AddRunComponent reloadCallback={fetchData} />

@@ -13,6 +13,7 @@ import { useFormik } from 'formik';
 import LoadingOverlay from 'react-loading-overlay';
 import { DatePicker, DatePickerInput } from 'rc-datepicker';
 import 'rc-datepicker/lib/style.css';
+import InputMask from "react-input-mask";
 
 const AddRunComponent = (props) => {
     const [message, setMessage] = useState(null);
@@ -21,9 +22,9 @@ const AddRunComponent = (props) => {
     const formik = useFormik({
         initialValues: {
              trainingDate: moment().format('YYYY-MM-DD'),
-             duration: '00:35:00',
-             distance: '5000',
-             energy: '500'
+             duration: '',
+             distance: '',
+             energy: ''
         },
         onSubmit: values => {
             const postData = {
@@ -32,6 +33,8 @@ const AddRunComponent = (props) => {
                 distanceInMeters: Math.round(values.distance),
                 energyInKCal: Math.round(values.energy)
             }
+
+            console.log('postData', postData)
 
             authProvider.getAccessToken().then(token => {
                 var config = {
@@ -70,10 +73,12 @@ const AddRunComponent = (props) => {
     });
 
     const handleTrainingdateChange = (jsDate, dateString) => {
-        formik.setValues({
-            trainingDate: dateString
-        })
-    }
+        formik.setFieldValue('trainingDate', dateString);
+    };
+
+    const handleDurationChange = (event) => {
+        formik.setFieldValue('duration', event.target.value);
+    };
 
     return (
         <Container>
@@ -91,7 +96,6 @@ const AddRunComponent = (props) => {
                             <DatePickerInput
                                 id="trainingDate"
                                 name="trainingDate"
-                                class="form-control"
                                 type="text"
                                 onChange={handleTrainingdateChange}
                                 value={formik.values.trainingDate}
@@ -107,13 +111,21 @@ const AddRunComponent = (props) => {
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">Trainingsdauer</Form.Label>
                         <Col sm="10">
-                            <Form.Control type="text"
+                            {/* <Form.Control type="text"
                             id="duration"
                             name="duration"
                             value={formik.values.duration}
                             onChange={formik.handleChange}
-                            placeholder="35:00" />
-                            <Form.Text className="text-muted">Dauer des Trainings in Stunden (optional), Minuten und Sekunden [h:mm:ss]</Form.Text>
+                            placeholder="35:00" /> */}
+                            <InputMask
+                                id="duration"
+                                name="duration"
+                                className="form-control"
+                                onChange={handleDurationChange}
+                                value={formik.values.duration}
+                                mask="99:99:99"
+                                maskPlaceholder="hh:mm:ss" />
+                            <Form.Text className="text-muted">Dauer des Trainings in Stunden, Minuten und Sekunden [h:mm:ss]</Form.Text>
                         </Col>
                     </Form.Group>
 
